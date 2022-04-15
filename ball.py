@@ -12,8 +12,16 @@ class Ball(Turtle):
         self.penup()
         self.speed('fast')
         self.goto(0, 0)
+        self.x_speed = -10
+        self.y_speed = -10
 
-    def move(self):
-        new_x = self.xcor() + 10
-        new_y = self.xcor() + 10
+    def move(self, x, y):
+        new_x = self.xcor() + self.x_speed
+        new_y = self.ycor() + self.y_speed
         self.goto(x=new_x, y=new_y)
+
+    def bounce_y(self):
+        self.y_speed *= -1
+
+    def bounce_x(self):
+        self.x_speed *= -1

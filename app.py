@@ -70,7 +70,19 @@ while game_is_on:
     scoreboard_p2.write_score(arg=scoreboard_p2.score,
                               align='center', x=50, y=270)
 
-    ball.move()
+    ball.move(x=10, y=10)
+
+    # Detect collision with walls
+    if ball.ycor() > 290 or ball.ycor() < -290:
+        # Bounce the ball
+        ball.bounce_y()
+
+    # Detect collision with the paddles
+    if ball.distance(paddle1) < 35 and ball.xcor() > 325 or ball.distance(paddle2) < 30 and ball.xcor() < -330:
+        # Bounce the ball
+        ball.bounce_x()
+
+    print(f'X: {ball.xcor()}, Y: {ball.ycor()}')
 
 # Keeping the screen up till user click
 screen.exitonclick()
