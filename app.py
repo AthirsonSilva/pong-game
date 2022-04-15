@@ -82,6 +82,29 @@ while game_is_on:
         # Bounce the ball
         ball.bounce_x()
 
+    # Detect if the ball gets out off-bounds
+    if ball.xcor() > 400:
+        # Game over
+        ball.refresh()
+        scoreboard_p1.clear()
+        scoreboard_p1.add_point()
+
+    if ball.xcor() < -400:
+        # Add points
+        ball.refresh()
+        scoreboard_p2.clear()
+        scoreboard_p2.add_point()
+
+    if scoreboard_p1 == 5:
+        # Game over
+        game_is_on = False
+        scoreboard_p1.game_over(winner='Player 1', loser='Player 2')
+
+    if scoreboard_p1 == 5:
+        # Game over
+        game_is_on = False
+        scoreboard_p1.game_over(winner='Player 2', loser='Player 1')
+
     print(f'X: {ball.xcor()}, Y: {ball.ycor()}')
 
 # Keeping the screen up till user click
