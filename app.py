@@ -9,7 +9,7 @@ from turtle import Screen
 screen = Screen()
 screen.bgcolor('black')
 screen.title('Pong')
-screen.setup(height=600, width=600)
+screen.setup(height=600, width=800)
 
 
 def draw_dashed():
@@ -37,16 +37,17 @@ draw_dashed()
 
 # Creating paddles
 paddle1 = Paddle()
-paddle1.create_paddle('blue', 250, 0)
+paddle1.create_paddle('blue', 350, 0)
 paddle2 = Paddle()
-paddle2.create_paddle('red', -250, 0)
+paddle2.create_paddle('red', -350, 0)
 
-# Creating the ball
-ball = Ball()
 
 # Creating scoreboard
 scoreboard_p1 = Scoreboard()
 scoreboard_p2 = Scoreboard()
+
+# Creating the ball
+ball = Ball()
 
 # Key strokes
 screen.listen()
@@ -62,12 +63,14 @@ screen.onkey(paddle2.down, 'Down')
 # Game screen loop
 game_is_on = True
 while game_is_on:
+    sleep(0.05)
     screen.update()
     scoreboard_p1.write_score(arg=scoreboard_p1.score,
                               align='center', x=-50, y=270)
     scoreboard_p2.write_score(arg=scoreboard_p2.score,
                               align='center', x=50, y=270)
-    sleep(0.1)
+
+    ball.move()
 
 # Keeping the screen up till user click
 screen.exitonclick()
